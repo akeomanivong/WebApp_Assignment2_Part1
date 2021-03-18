@@ -24,17 +24,19 @@
                          <div class="row">
                               <div class="col-sm-4">
                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                   <button type="reset" class="but btn-secondary">Reset</button>
+                                   <button type="reset" class="but btn-secondary" @click="reset">Reset</button>
                               <div>
                          </div>
 
                     </fieldset>
                </form>
                <div id="mainDiv">
-                    <div class="row col-sm-5" v-if="result != null">found {{ (result != null)?result.totalItems:'' }}</div>
+                    <div v-if="result != null"> Found {{ (result != null)?result.totalItems:'' }}</div>
                     <div class="row">
                          <book-display v-if="result != null" v-for="(book, index) in result.items" :key="book.id" :book="JSON.stringify(book)"></book-display>
                     </div>
+                    <button class="btn btn-primary" id="btn_prev" v-show="notFirstPage" @click="previousPage">Prev</>
+                    <button class="btn btn-primary" id="btn_next" v-show="begin" @click="nextPage">Next</button>
                </div>
           </div>
 
